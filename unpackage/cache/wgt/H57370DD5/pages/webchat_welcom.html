@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.css" rel="stylesheet" />
+		<style>
+			body{
+				background-image: url(../images/bg.webp);
+				background-size: cover;
+			}
+			.btns{
+				position: absolute;
+				bottom: 60px;
+				height: 40px;
+				width: 100%;
+			}
+			.btn{
+				width: 50%;
+				text-align: center;
+			}
+			.mui-btn-green{
+				width: 120px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="btns" id="btns">
+			<div class="btn mui-pull-left">
+				<button id="login" class="mui-btn-green">登入</button>
+			</div>
+			<div class="btn mui-pull-right">
+				<button id="register" class="mui-btn-green">注册</button>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="../js/app.js" ></script>
+		<script src="../js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function () {
+				var btns = document.getElementById("btns");
+				var userInfo = app.getUserGlobalInfo();
+				if (userInfo != null) {
+					btns.style.display = 'none';
+				}
+				//2s后跳转登入页
+				setTimeout(function() {
+					// 判断用户是否注册登录过，如果本地内存有全局的用户对象，此时直接跳转到首页
+					if (userInfo != null) {
+						// 页面跳转主页
+						mui.openWindow("index.html", "index.html");
+					}
+					
+				}, 2000);
+			});
+			
+			var login = document.getElementById("login");
+			var register = document.getElementById("register");
+			login.addEventListener("tap",function(){
+				// 页面跳转登入页
+				mui.openWindow({
+					url:"login.html",
+					id:'login'
+				});
+			});
+			register.addEventListener("tap",function(){
+				// 页面跳转注册页
+				mui.openWindow({
+					url:"register2.html",
+					id:'register2'
+				});
+			});
+		</script>
+	</body>
+
+</html>
